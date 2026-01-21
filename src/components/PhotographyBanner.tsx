@@ -419,6 +419,90 @@ const PhotographyBanner: React.FC = () => {
           opacity: 0.9;
         }
 
+        .tamagotchi-character {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 3;
+          animation: float-gentle 3s ease-in-out infinite;
+        }
+
+        .tamagotchi-body {
+          width: 280px;
+          height: 280px;
+          background: linear-gradient(135deg, #d33682 0%, #cb4b16 100%);
+          border-radius: 50%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 20px 60px rgba(211, 54, 130, 0.6);
+          position: relative;
+          animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        .tamagotchi-body::before {
+          content: '';
+          position: absolute;
+          top: -10px;
+          left: -10px;
+          right: -10px;
+          bottom: -10px;
+          background: linear-gradient(135deg, #d33682, #cb4b16);
+          border-radius: 50%;
+          z-index: -1;
+          opacity: 0.3;
+          filter: blur(20px);
+        }
+
+        .tamagotchi-eyes {
+          font-size: 48px;
+          margin-bottom: 10px;
+          animation: blink 4s infinite;
+        }
+
+        .tamagotchi-mouth {
+          font-size: 36px;
+          animation: smile 2s ease-in-out infinite;
+        }
+
+        @keyframes float-gentle {
+          0%, 100% {
+            transform: translate(-50%, -50%) translateY(0px);
+          }
+          50% {
+            transform: translate(-50%, -50%) translateY(-20px);
+          }
+        }
+
+        @keyframes pulse-glow {
+          0%, 100% {
+            box-shadow: 0 20px 60px rgba(211, 54, 130, 0.6);
+          }
+          50% {
+            box-shadow: 0 20px 80px rgba(211, 54, 130, 0.9);
+          }
+        }
+
+        @keyframes blink {
+          0%, 48%, 52%, 100% {
+            opacity: 1;
+          }
+          50% {
+            opacity: 0.1;
+          }
+        }
+
+        @keyframes smile {
+          0%, 100% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.1);
+          }
+        }
+
         @media screen and (min-width: 1500px) {
           .info-section {
             padding-left: 120px;
@@ -839,7 +923,7 @@ const PhotographyBanner: React.FC = () => {
               <p className="tracking-widest">
                 Твой цифровой друг-тамагочи, который напомнит о задачах с забавными комментариями. Не забывай отмечать выполненное — иначе твой аватар потеряет здоровье и настроение!
               </p>
-              <a href="#cta" className="book-link">
+              <a href="/create" className="book-link">
                 <span className="linktext tracking-tighter text-3xl">Запустить</span>
                 <span className="arrow">
                   <span></span>
@@ -862,6 +946,14 @@ const PhotographyBanner: React.FC = () => {
                     }}
                   />
                 ))}
+              </div>
+              <div className="tamagotchi-character">
+                <div className="tamagotchi-body">
+                  <div className="tamagotchi-eyes">
+                    <span>👀</span>
+                  </div>
+                  <div className="tamagotchi-mouth">😊</div>
+                </div>
               </div>
               <div className="bg-line">
                 <img
@@ -1018,7 +1110,7 @@ const PhotographyBanner: React.FC = () => {
                 Заведи своего цифрового друга, который поможет тебе выполнять задачи и достигать целей. Не забывай о нём — иначе ему будет грустно!
               </p>
               <div className="cta-buttons">
-                <a href="#" className="cta-button">
+                <a href="/create" className="cta-button">
                   Запустить приложение
                 </a>
                 <a href="#" className="cta-button secondary">
